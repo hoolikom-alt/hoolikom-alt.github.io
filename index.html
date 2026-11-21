@@ -26,6 +26,24 @@ nav button{flex:1;background:none;border:0;color:var(--mut);font-size:13px;font-
 @keyframes roll{0%{transform:translate(0,0)}25%{transform:translate(var(--x),var(--y))}50%{transform:translate(calc(var(--x)*-1),var(--y))}75%{transform:translate(var(--y),calc(var(--x)*-1))}100%{transform:translate(0,0)}}
 .wins{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}.win{text-align:center;animation:pop .5s}.win .ball{width:64px;height:64px;font-size:20px;margin:auto}@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
 .toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:#000c;padding:10px 16px;border-radius:99px;font-size:14px;z-index:9}
+
+/* Affichage agrandi pour l'appli installée */
+body{padding-bottom:120px}
+main{max-width:600px}
+.logo{font-size:46px}.sub{font-size:15px}
+.card{padding:24px;border-radius:26px}
+.chip{font-size:15px;padding:7px 15px}
+.vs .t{font-size:32px}.vs .x{font-size:22px}.when{font-size:19px}
+label{font-size:16px;margin:18px 0 9px}
+input{font-size:21px;padding:19px;border-radius:15px}
+.sc input{font-size:40px}
+.btn{font-size:22px;padding:20px;border-radius:17px}
+.mut{font-size:17px}.row{font-size:19px}
+.num{font-size:84px}
+nav button{font-size:16px}nav i{font-size:30px}
+.toast{font-size:18px}
+.cage{width:270px;height:270px}
+.win .ball{width:78px;height:78px;font-size:25px}.win div{font-size:16px}
 </style></head><body>
 <header><div class="logo">👑 ROM<b>828</b></div><div class="sub">Pronostic · Tirage au sort</div></header>
 <main id="app"></main>
