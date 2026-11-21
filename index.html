@@ -1,0 +1,144 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>ROM828 Pronostic</title>
+<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#050d2b"><link rel="apple-touch-icon" href="icon-192.png"><link rel="icon" href="icon-192.png">
+<style>
+:root{--bg:#050d2b;--card:#0c1a4a;--line:#27408f;--gold:#ffd400;--mut:#9fb0e6;--red:#e63946;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(120% 60% at 50% 0,#12307f 0,var(--bg) 60%) fixed;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;padding:env(safe-area-inset-top,0) 0 90px}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:url(fond.jpg) center/cover no-repeat;opacity:.16}
+header{text-align:center;padding:18px 16px 6px}.logo{font-size:34px;font-weight:900;font-style:italic;letter-spacing:-1px}.logo b{color:var(--gold)}
+.sub{color:var(--mut);font-size:12px;letter-spacing:2px;text-transform:uppercase}
+main{max-width:480px;margin:0 auto;padding:12px 16px}
+.card{background:linear-gradient(160deg,#102468,var(--card));border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:14px;box-shadow:0 8px 24px #0006}
+.chip{display:inline-block;background:var(--gold);color:#050d2b;font-weight:800;font-size:11px;padding:4px 10px;border-radius:99px;letter-spacing:1px}.chip.off{background:var(--red);color:#fff}
+.vs{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;text-align:center;margin:16px 0 6px}.vs .t{font-size:22px;font-weight:800;overflow-wrap:anywhere}.vs .x{color:var(--gold);font-weight:900}
+.when{text-align:center;color:var(--mut);font-size:14px}
+label{display:block;font-size:12px;color:var(--mut);margin:12px 0 6px;text-transform:uppercase;letter-spacing:1px}
+input{width:100%;background:#071340;border:1px solid var(--line);border-radius:12px;color:#fff;padding:14px;font-size:16px;outline:none}input:focus{border-color:var(--gold)}
+.sc{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}.sc input{text-align:center;font-size:28px;font-weight:800}
+.btn{width:100%;border:0;border-radius:14px;padding:15px;font-size:16px;font-weight:800;background:linear-gradient(180deg,#ffe24d,var(--gold));color:#050d2b;margin-top:16px;cursor:pointer}.btn.alt{background:#173180;color:#fff}.btn.red{background:var(--red);color:#fff}
+.ticket{text-align:center;border:2px dashed var(--gold)}.num{font-size:64px;font-weight:900;color:var(--gold);letter-spacing:4px}
+.row{display:flex;justify-content:space-between;gap:8px;padding:10px 0;border-bottom:1px solid #1d3680;font-size:14px}.row:last-child{border:0}.mut{color:var(--mut);font-size:13px}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:#071340ee;backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px))}
+nav button{flex:1;background:none;border:0;color:var(--mut);font-size:13px;font-weight:700;padding:8px;cursor:pointer}nav button.on{color:var(--gold)}nav i{display:block;font-style:normal;font-size:22px}
+.cage{width:210px;height:210px;border-radius:50%;border:4px solid var(--line);margin:8px auto 16px;position:relative;overflow:hidden;background:radial-gradient(circle,#0a5a2a,#063a1b)}
+.ball,.b{width:48px;height:48px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,var(--gold) 60%,#c99a00);color:#050d2b;font-weight:900;display:grid;place-items:center;font-size:15px}
+.b{position:absolute;left:calc(50% - 17px);top:calc(50% - 17px);width:34px;height:34px;font-size:11px}.spin .b{animation:roll .9s infinite ease-in-out}
+@keyframes roll{0%{transform:translate(0,0)}25%{transform:translate(var(--x),var(--y))}50%{transform:translate(calc(var(--x)*-1),var(--y))}75%{transform:translate(var(--y),calc(var(--x)*-1))}100%{transform:translate(0,0)}}
+.wins{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}.win{text-align:center;animation:pop .5s}.win .ball{width:64px;height:64px;font-size:20px;margin:auto}@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:#000c;padding:10px 16px;border-radius:99px;font-size:14px;z-index:9}
+
+/* Affichage agrandi pour l'appli installée */
+body{padding-bottom:120px}
+main{max-width:600px}
+.logo{font-size:46px}.sub{font-size:15px}
+.card{padding:24px;border-radius:26px}
+.chip{font-size:15px;padding:7px 15px}
+.vs .t{font-size:32px}.vs .x{font-size:22px}.when{font-size:19px}
+label{font-size:16px;margin:18px 0 9px}
+input{font-size:21px;padding:19px;border-radius:15px}
+.sc input{font-size:40px}
+.btn{font-size:22px;padding:20px;border-radius:17px}
+.mut{font-size:17px}.row{font-size:19px}
+.num{font-size:84px}
+nav button{font-size:16px}nav i{font-size:30px}
+.toast{font-size:18px}
+.cage{width:270px;height:270px}
+.win .ball{width:78px;height:78px;font-size:25px}.win div{font-size:16px}
+
+/* Tailles proportionnelles a la largeur : automatique, sans JavaScript */
+@media (max-width:699.98px),(max-device-width:600px),(max-width:1200px) and (min-resolution:2dppx),(max-width:1200px) and (-webkit-max-device-pixel-ratio:1.5){
+body{padding-bottom:24vw}
+main{max-width:none;padding:2vw 3.6vw}
+.logo{font-size:9.4vw}.sub{font-size:2.9vw}
+header{padding:4vw 3vw 1vw}
+.card{padding:4.6vw;border-radius:5.4vw;margin-bottom:3.4vw}
+.chip{font-size:2.9vw;padding:1.2vw 3vw}
+.vs .t{font-size:6.2vw}.vs .x{font-size:4.6vw}.when{font-size:3.8vw}
+label{font-size:3.1vw;margin:3.6vw 0 1.8vw}
+input{font-size:4.4vw;padding:3.6vw;border-radius:3.2vw}
+.sc input{font-size:8vw}
+.btn{font-size:4.5vw;padding:4vw;border-radius:3.6vw;margin-top:4vw}
+.mut{font-size:3.5vw}.row{font-size:3.9vw}
+.num{font-size:17vw}
+nav{padding:1.6vw 1vw}
+nav button{font-size:3.2vw}nav i{font-size:6.6vw}
+.toast{font-size:3.8vw;bottom:24vw}
+.cage{width:58vw;height:58vw}
+.win .ball{width:16vw;height:16vw;font-size:5vw}.win div{font-size:3.4vw}
+}
+</style></head><body>
+<header><div class="logo">👑 ROM<b>828</b></div><div class="sub">Pronostic · Tirage au sort</div></header>
+<main id="app"></main>
+<nav><button id="n1" onclick="go('play')"><i>⚽</i>Jouer</button><button id="n2" onclick="go('admin')"><i>🔒</i>Admin</button></nav>
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import {getFirestore,doc,onSnapshot,runTransaction,setDoc,updateDoc,collection,query,orderBy,getDocs,deleteDoc} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import {getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import {firebaseConfig} from "./config.js";
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+const app=initializeApp(firebaseConfig),db=getFirestore(app),auth=getAuth(app),mref=doc(db,'match','current');
+let M=null,P=[],U=null,view='play',busy=false,loaded=false,unsubP=null,rc=0;
+const $=s=>document.querySelector(s),esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),pad=n=>String(n).padStart(3,'0'),sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const toast=m=>{const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),2600)};
+const getT=()=>{try{const t=JSON.parse(localStorage.getItem('rom828_t'));return t&&M&&t.round===M.round?t:null}catch(e){return null}};
+onSnapshot(mref,s=>{M=s.exists()?s.data():null;loaded=true;render()},()=>{loaded=true;render();toast('Connexion impossible')});
+onAuthStateChanged(auth,u=>{U=u;if(unsubP){unsubP();unsubP=null}P=[];
+ if(u)unsubP=onSnapshot(query(collection(db,'preds'),orderBy('n')),s=>{P=s.docs.map(d=>d.data());render()},()=>{});render()});
+window.go=v=>{view=v;render()};
+const wn=w=>`<div class="win"><div class="ball">${pad(w.n)}</div><div style="font-size:13px;margin-top:4px">${esc(w.name)}</div></div>`;
+const mcard=()=>`<div class="card"><span class="chip ${M.open?'':'off'}">${M.open?'PRONOSTICS OUVERTS':'PRONOSTICS FERMÉS'}</span><div class="vs"><div class="t">${esc(M.home)}</div><div class="x">VS</div><div class="t">${esc(M.away)}</div></div><div class="when">${esc(M.when||'')}</div></div>`;
+function render(){
+ if(busy)return;
+ $('#n1').className=view==='play'?'on':'';$('#n2').className=view==='admin'?'on':'';
+ let h='';
+ if(view==='play'){
+  if(!loaded)h='<div class="card mut">Chargement…</div>';
+  else if(!M)h='<div class="card mut">Aucun match pour le moment. Revenez bientôt !</div>';
+  else{h=mcard();const T=getT();
+   if(T)h+=`<div class="card ticket"><div class="mut">Pronostic enregistré</div><div class="num">N° ${pad(T.n)}</div><div>${esc(T.name)}</div><div class="mut">Score choisi : ${T.a} - ${T.b}</div><div class="mut" style="margin-top:10px">Gardez votre numéro. Bonne chance ! 🍀</div></div>`;
+   else if(M.open)h+=`<div class="card"><label>Votre nom</label><input id="nm" placeholder="Ex : Kodjo"><label>Numéro WhatsApp</label><input id="ph" inputmode="tel" placeholder="Ex : 90 00 00 00"><label>Votre pronostic (score final)</label><div class="sc"><input id="sa" type="number" min="0" max="20" inputmode="numeric" placeholder="0"><b>-</b><input id="sb" type="number" min="0" max="20" inputmode="numeric" placeholder="0"></div><button class="btn" onclick="sub()">Valider mon pronostic</button><div class="mut" style="margin-top:10px">Un seul pronostic par numéro WhatsApp. Votre numéro de tirage dépend de votre ordre d’arrivée.</div></div>`;
+   else h+='<div class="card mut">Les pronostics sont fermés pour ce match.</div>';
+   if(M.draw&&M.draw.length)h+=`<div class="card"><b>🏆 Gagnants du tirage</b><div class="wins" style="margin-top:12px">${M.draw.map(wn).join('')}</div></div>`;
+   h+=`<div class="mut" style="text-align:center">${M.count||0} participant(s)</div>`}
+ }else if(!U){
+  h=`<div class="card"><label>Email administrateur</label><input id="em" type="email" autocomplete="username"><label>Mot de passe</label><input id="pw" type="password" autocomplete="current-password"><button class="btn" onclick="login()">Se connecter</button></div>`;
+ }else if(!M){
+  h=`<div class="card"><b>Aucun match créé</b><button class="btn" onclick="init()">Initialiser le match</button><button class="btn alt" onclick="logout()">Déconnexion</button></div>`;
+ }else{
+  const el=M.result?P.filter(p=>p.a===M.result.a&&p.b===M.result.b):[];
+  h=mcard()+`<div class="card"><b>Match</b><label>Équipe domicile</label><input id="mh" value="${esc(M.home)}"><label>Équipe extérieur</label><input id="ma" value="${esc(M.away)}"><label>Date / heure</label><input id="mw" value="${esc(M.when||'')}"><button class="btn alt" onclick="setM()">Enregistrer le match</button><button class="btn ${M.open?'red':''}" onclick="togg()">${M.open?'Fermer les pronostics':'Rouvrir les pronostics'}</button></div>
+  <div class="card"><b>Participants (${P.length})</b>${P.map(p=>`<div class="row"><span>N° ${pad(p.n)} · ${esc(p.name)} · ${esc(p.p)}</span><span>${p.a}-${p.b}</span></div>`).join('')||'<div class="mut" style="margin-top:8px">Aucun pronostic.</div>'}</div>
+  <div class="card"><b>Tirage</b><label>Score réel du match</label><div class="sc"><input id="ra" type="number" min="0" inputmode="numeric" value="${M.result?M.result.a:''}"><b>-</b><input id="rb" type="number" min="0" inputmode="numeric" value="${M.result?M.result.b:''}"></div><label>Nombre de gagnants</label><input id="kw" type="number" min="1" value="3" inputmode="numeric">
+  <div class="mut" style="margin-top:8px">${M.result?el.length+' bon(s) pronostic(s) éligible(s)':'Saisissez le score réel puis lancez.'}</div>
+  <div class="cage" id="cage">${Array.from({length:10},(_,i)=>`<div class="b" style="--x:${(i%5)*14-28}px;--y:${(i*17)%60-30}px;animation-delay:${i*.07}s">${i+1}</div>`).join('')}</div>
+  <div class="wins" id="wins">${(M.draw||[]).map(wn).join('')}</div>
+  <button class="btn" onclick="tirer()">🎱 Lancer le tirage</button>${(M.draw||[]).length?'<button class="btn alt" onclick="copy()">Copier la liste des gagnants</button>':''}
+  <button class="btn red" id="rs" onclick="reset()">Nouveau match (efface les pronostics)</button><button class="btn alt" onclick="logout()">Déconnexion</button></div>`;
+ }
+ $('#app').innerHTML=h}
+window.sub=async()=>{const name=$('#nm').value.trim(),p=$('#ph').value.replace(/\D/g,''),a=$('#sa').value,b=$('#sb').value;
+ if(name.length<2||p.length<8||a===''||b===''){toast('Complétez tous les champs');return}
+ try{let n;await runTransaction(db,async tx=>{const m=(await tx.get(mref)).data(),pr=await tx.get(doc(db,'preds',p));
+  if(pr.exists())throw new Error('dup');if(!m.open)throw new Error('closed');n=(m.count||0)+1;
+  tx.update(mref,{count:n});tx.set(doc(db,'preds',p),{n,name,a:+a,b:+b,p})});
+  try{localStorage.setItem('rom828_t',JSON.stringify({round:M.round,n,name,a:+a,b:+b}))}catch(e){}render()}
+ catch(e){toast(e.message==='dup'?'Ce numéro a déjà un pronostic':'Impossible d’enregistrer. Réessayez.')}};
+window.login=async()=>{try{await signInWithEmailAndPassword(auth,$('#em').value.trim(),$('#pw').value)}catch(e){toast('Identifiants incorrects')}};
+window.logout=()=>signOut(auth);
+window.init=()=>setDoc(mref,{home:'Équipe A',away:'Équipe B',when:'',open:true,count:0,result:null,draw:[],round:Date.now()}).catch(()=>toast('Accès refusé (vérifiez les règles)'));
+window.setM=()=>updateDoc(mref,{home:$('#mh').value||'Équipe A',away:$('#ma').value||'Équipe B',when:$('#mw').value}).then(()=>toast('Match enregistré'),()=>toast('Accès refusé'));
+window.togg=()=>updateDoc(mref,{open:!M.open}).catch(()=>toast('Accès refusé'));
+window.tirer=async()=>{const a=$('#ra').value,b=$('#rb').value;if(a===''||b===''){toast('Saisissez le score réel');return}
+ const k0=Math.max(1,+$('#kw').value||1);await updateDoc(mref,{result:{a:+a,b:+b},draw:[]}).catch(()=>{});
+ const pool=P.filter(p=>p.a===+a&&p.b===+b);if(!pool.length){toast('Aucun bon pronostic');return}
+ const k=Math.min(k0,pool.length);busy=true;const cage=$('#cage'),box=$('#wins');box.innerHTML='';const out=[];
+ for(let i=0;i<k;i++){cage.classList.add('spin');await sleep(2200);cage.classList.remove('spin');
+  const r=crypto.getRandomValues(new Uint32Array(1))[0]%pool.length,w=pool.splice(r,1)[0];
+  out.push({n:w.n,name:w.name});box.insertAdjacentHTML('beforeend',wn(w));await updateDoc(mref,{draw:out}).catch(()=>{});await sleep(700)}
+ busy=false;render();toast('Tirage terminé 🎉')};
+window.copy=()=>{const t='🏆 Gagnants ROM828 – '+M.home+' vs '+M.away+'\n'+M.draw.map((w,i)=>(i+1)+'. N° '+pad(w.n)+' – '+w.name).join('\n');
+ navigator.clipboard.writeText(t).then(()=>toast('Liste copiée'),()=>toast('Copie impossible'))};
+window.reset=async()=>{if(++rc<2){$('#rs').textContent='Appuyez encore pour confirmer';return}rc=0;
+ try{const s=await getDocs(collection(db,'preds'));await Promise.all(s.docs.map(d=>deleteDoc(d.ref)));
+  await updateDoc(mref,{open:true,count:0,result:null,draw:[],round:Date.now()});toast('Nouveau match prêt')}catch(e){toast('Erreur')}};
+</script></body></html>
