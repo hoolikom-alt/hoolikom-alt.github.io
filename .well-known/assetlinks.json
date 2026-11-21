@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.hoolikom_alt.twa",
+        "sha256_cert_fingerprints": ["A2:59:B1:43:90:84:64:9C:8E:B5:1C:6A:7C:1F:28:13:8C:C6:C0:39:91:04:32:56:EA:DE:96:3F:E8:6A:C7:36"]
+      }
+    }]
